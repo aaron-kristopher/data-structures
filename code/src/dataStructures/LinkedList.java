@@ -49,8 +49,6 @@ public class LinkedList {
         if (isEmpty())
             throw new NoSuchElementException();
 
-        size--;
-
         if (first == last) {
             first = last = null;
             return;
@@ -66,8 +64,6 @@ public class LinkedList {
     public void removeLast() {
         if (isEmpty())
             throw new NoSuchElementException();
-
-        size--;
 
         if (first == last) {
             first = last = null;
