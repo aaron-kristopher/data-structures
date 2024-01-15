@@ -2,7 +2,6 @@ package dataStructures;
 
 public class LinkedList {
 
-    // TODO addFirst
     // TODO addLast
     // TODO deleteFirst
     // TODO deleteLast
@@ -33,6 +32,30 @@ public class LinkedList {
         }
 
         count++;
+    }
+
+    public void addLast(int item) {
+        Node node = new Node(item);
+        if (last == null)
+            first = last = node;
+        else {
+
+            last.next = node;
+            last = node;
+        }
+
+        count++;
+    }
+
+    private Node getPreviousNode(Node node) {
+        var current = first;
+
+        while (current.next != node) {
+            current = current.next;
+        }
+
+        return current;
+
     }
 
     public void print() {
