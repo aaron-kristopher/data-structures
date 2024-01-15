@@ -3,10 +3,6 @@ package dataStructures;
 import java.util.Arrays;
 
 public class Array {
-    // TODO insert
-    // TODO removeAt
-    // TODO indexOf (return -1 if not in array)
-    // TODO print
 
     private int[] array;
     private int count = 0;
@@ -23,7 +19,6 @@ public class Array {
     }
 
     public void resize() {
-        // Double original array length
         int[] newArray = new int[array.length * 2];
 
         for (int i = 0; i < array.length; i++) {
