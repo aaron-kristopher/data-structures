@@ -8,8 +8,8 @@ public class Array {
     // TODO indexOf (return -1 if not in array)
     // TODO print
 
-    static private int[] array;
-    static private int end = 0;
+    private int[] array;
+    private int end = 0;
 
     Array(int length) {
         array = new int[length];
