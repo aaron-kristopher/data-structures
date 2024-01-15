@@ -34,7 +34,7 @@ public class Array {
     }
 
     public void removeAt(int index) {
-        if (index > array.length)
+        if (index < 0 || index >= count)
             throw new IndexOutOfBoundsException();
 
         for (int i = index; i < array.length - 1; i++) {
