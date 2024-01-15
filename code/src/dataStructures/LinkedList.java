@@ -6,6 +6,7 @@ public class LinkedList {
 
     private Node first;
     private Node last;
+    private int size = 0;
 
     private class Node {
         int value;
@@ -24,6 +25,8 @@ public class LinkedList {
             node.next = first;
             first = node;
         }
+
+        size++;
     }
 
     public void addLast(int item) {
@@ -34,6 +37,8 @@ public class LinkedList {
             last.next = node;
             last = node;
         }
+
+        size++;
     }
 
     private boolean isEmpty() {
@@ -43,6 +48,8 @@ public class LinkedList {
     public void removeFirst() {
         if (isEmpty())
             throw new NoSuchElementException();
+
+        size--;
 
         if (first == last) {
             first = last = null;
@@ -57,6 +64,8 @@ public class LinkedList {
     public void removeLast() {
         if (isEmpty())
             throw new NoSuchElementException();
+
+        size--;
 
         if (first == last) {
             first = last = null;
@@ -105,5 +114,9 @@ public class LinkedList {
             System.out.print(current.value + ((current.next != null) ? " -> " : " "));
             current = current.next;
         }
+    }
+
+    public int size() {
+        return size;
     }
 }
