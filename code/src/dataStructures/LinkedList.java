@@ -6,7 +6,6 @@ public class LinkedList {
 
     private Node first;
     private Node last;
-    private int count = 0;
 
     private class Node {
         int value;
@@ -27,7 +26,6 @@ public class LinkedList {
             first = node;
         }
 
-        count++;
     }
 
     public void addLast(int item) {
@@ -40,14 +38,12 @@ public class LinkedList {
             last = node;
         }
 
-        count++;
     }
 
     public int deleteFirst() {
         var oldFirst = first;
         first = first.next;
         oldFirst.next = null;
-        count--;
 
         return oldFirst.value;
     }
@@ -56,7 +52,6 @@ public class LinkedList {
         var oldLast = last;
         last = getPreviousNode(last);
         last.next = null;
-        count--;
 
         return oldLast.value;
     }
@@ -85,10 +80,9 @@ public class LinkedList {
     }
 
     public void print() {
-        var node = first;
-        for (int i = 0; i < count; i++) {
-            System.out.println(node.value);
-            node = node.next;
+        var current = first;
+        while (current != null) {
+            System.out.print(current.value + ((current.next == null) ? " -> " : ""));
         }
     }
 }
