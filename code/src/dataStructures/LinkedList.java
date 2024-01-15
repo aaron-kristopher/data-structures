@@ -1,5 +1,7 @@
 package dataStructures;
 
+import java.util.NoSuchElementException;
+
 public class LinkedList {
 
     private Node first;
@@ -38,12 +40,18 @@ public class LinkedList {
         return (first == null);
     }
 
-    public int removeFirst() {
+    public void removeFirst() {
+        if (isEmpty())
+            throw new NoSuchElementException();
+
+        if (first == last) {
+            first = last = null;
+            return;
+        }
+
         var oldFirst = first;
         first = first.next;
         oldFirst.next = null;
-
-        return oldFirst.value;
     }
 
     public int removeLast() {
@@ -57,11 +65,13 @@ public class LinkedList {
     private Node getPreviousNode(Node node) {
         var current = first;
 
-        while (current.next != node) {
+        while (current.next != null) {
+            if (current.next == node)
+                return current;
             current = current.next;
         }
 
-        return current;
+        return null;
 
     }
 
