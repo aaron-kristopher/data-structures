@@ -54,6 +54,15 @@ public class LinkedList {
         return oldFirst.value;
     }
 
+    public int deleteLast() {
+        var oldLast = last;
+        last = getPreviousNode(last);
+        last.next = null;
+        count--;
+
+        return oldLast.value;
+    }
+
     private Node getPreviousNode(Node node) {
         var current = first;
 
