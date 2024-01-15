@@ -16,25 +16,26 @@ public class LinkedList {
 
     public void addFirst(int item) {
         Node node = new Node(item);
-        if (first == null)
+        if (isEmpty())
             first = last = node;
         else {
             node.next = first;
             first = node;
         }
-
     }
 
     public void addLast(int item) {
         Node node = new Node(item);
-        if (last == null)
+        if (isEmpty())
             first = last = node;
         else {
-
             last.next = node;
             last = node;
         }
+    }
 
+    private boolean isEmpty() {
+        return (first == null);
     }
 
     public int deleteFirst() {
