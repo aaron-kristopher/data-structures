@@ -2,8 +2,6 @@ package dataStructures;
 
 public class LinkedList {
 
-    // TODO indexOf
-
     private Node first;
     private Node last;
 
@@ -11,8 +9,8 @@ public class LinkedList {
         int value;
         Node next;
 
-        Node(int item) {
-            value = item;
+        Node(int value) {
+            this.value = value;
         }
     }
 
