@@ -79,10 +79,24 @@ public class LinkedList {
         return false;
     }
 
+    public int indexOf(int item) {
+        int index = 0;
+        var current = first;
+
+        while (current != null) {
+            if (current.value == item)
+                return index;
+
+            index++;
+            current = current.next;
+        }
+        return -1;
+    }
+
     public void print() {
         var current = first;
         while (current != null) {
-            System.out.print(current.value + ((current.next == null) ? " -> " : ""));
+            System.out.print(current.value + ((current.next != null) ? " -> " : " "));
             current = current.next;
         }
     }
