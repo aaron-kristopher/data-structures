@@ -9,17 +9,17 @@ public class Array {
     // TODO print
 
     private int[] array;
-    private int end = 0;
+    private int count = 0;
 
     Array(int length) {
         array = new int[length];
     }
 
     public void insert(int item) {
-        if (array.length == end)
+        if (array.length == count)
             resize();
 
-        array[end++] = item;
+        array[count++] = item;
     }
 
     public void resize() {
@@ -41,7 +41,7 @@ public class Array {
             array[i] = array[i + 1];
         }
 
-        end--;
+        count--;
     }
 
     public int indexOf(int item) {
@@ -54,6 +54,6 @@ public class Array {
     }
 
     public void print() {
-        System.out.println(Arrays.toString(Arrays.copyOfRange(array, 0, end)));
+        System.out.println(Arrays.toString(Arrays.copyOfRange(array, 0, count)));
     }
 }
