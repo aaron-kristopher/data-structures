@@ -83,6 +83,7 @@ public class LinkedList {
         var current = first;
         while (current != null) {
             System.out.print(current.value + ((current.next == null) ? " -> " : ""));
+            current = current.next;
         }
     }
 }
