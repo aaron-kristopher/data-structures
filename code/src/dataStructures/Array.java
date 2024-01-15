@@ -35,7 +35,7 @@ public class Array {
 
     public void removeAt(int index) {
         if (index < 0 || index >= count)
-            throw new IndexOutOfBoundsException();
+            throw new IllegalArgumentException();
 
         for (int i = index; i < array.length - 1; i++) {
             array[i] = array[i + 1];
