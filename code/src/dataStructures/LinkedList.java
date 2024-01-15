@@ -54,12 +54,18 @@ public class LinkedList {
         oldFirst.next = null;
     }
 
-    public int removeLast() {
-        var oldLast = last;
-        last = getPreviousNode(last);
-        last.next = null;
+    public void removeLast() {
+        if (isEmpty())
+            throw new NoSuchElementException();
 
-        return oldLast.value;
+        if (first == last) {
+            first = last = null;
+            return;
+        }
+
+        var previous = getPreviousNode(last);
+        last = previous;
+        last.next = null;
     }
 
     private Node getPreviousNode(Node node) {
