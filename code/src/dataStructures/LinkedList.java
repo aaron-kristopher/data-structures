@@ -19,8 +19,7 @@ public class LinkedList {
         if (first == null)
             first = last = node;
         else {
-            var oldFirst = first;
-            node.next = oldFirst;
+            node.next = first;
             first = node;
         }
 
