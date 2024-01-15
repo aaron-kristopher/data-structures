@@ -38,7 +38,7 @@ public class LinkedList {
         return (first == null);
     }
 
-    public int deleteFirst() {
+    public int removeFirst() {
         var oldFirst = first;
         first = first.next;
         oldFirst.next = null;
@@ -46,7 +46,7 @@ public class LinkedList {
         return oldFirst.value;
     }
 
-    public int deleteLast() {
+    public int removeLast() {
         var oldLast = last;
         last = getPreviousNode(last);
         last.next = null;
