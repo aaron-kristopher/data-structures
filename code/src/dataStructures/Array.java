@@ -37,7 +37,7 @@ public class Array {
         if (index < 0 || index >= count)
             throw new IllegalArgumentException();
 
-        for (int i = index; i < array.length - 1; i++) {
+        for (int i = index; i < count - 1; i++) {
             array[i] = array[i + 1];
         }
 
