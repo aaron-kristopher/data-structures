@@ -2,8 +2,6 @@ package dataStructures;
 
 public class LinkedList {
 
-    // TODO addLast
-    // TODO deleteFirst
     // TODO deleteLast
     // TODO contains
     // TODO indexOf
@@ -45,6 +43,15 @@ public class LinkedList {
         }
 
         count++;
+    }
+
+    public int deleteFirst() {
+        var oldFirst = first;
+        first = first.next;
+        oldFirst.next = null;
+        count--;
+
+        return oldFirst.value;
     }
 
     private Node getPreviousNode(Node node) {
