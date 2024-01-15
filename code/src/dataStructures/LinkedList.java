@@ -2,8 +2,6 @@ package dataStructures;
 
 public class LinkedList {
 
-    // TODO deleteLast
-    // TODO contains
     // TODO indexOf
 
     private Node first;
@@ -72,6 +70,18 @@ public class LinkedList {
 
         return current;
 
+    }
+
+    public boolean contains(int item) {
+        var current = first;
+        while (current != null) {
+            if (current.value == item)
+                return true;
+
+            current = current.next;
+        }
+
+        return false;
     }
 
     public void print() {
