@@ -2,7 +2,7 @@ package challenges;
 
 import java.util.NoSuchElementException;
 
-public class reverseLinkedList {
+public class ReverseLinkedList {
 
     private Node first;
     private Node last;
