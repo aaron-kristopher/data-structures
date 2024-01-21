@@ -31,7 +31,7 @@ public class BalanceExpression {
     }
 
     private static boolean bracketsMatch(char left, char right) {
-        return (openingBrackets.indexOf(left ) == closingBrackets.indexOf(right);
+        return (openingBrackets.indexOf(left) == closingBrackets.indexOf(right));
     }
 
     private static boolean isOpeningBracket(char ch) {
