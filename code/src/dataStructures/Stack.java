@@ -7,7 +7,7 @@ public class Stack {
     private int[] array;
     private int count = 0;
 
-    Stack(int initialSize) {
+    public Stack(int initialSize) {
         array = new int[initialSize];
     }
 
