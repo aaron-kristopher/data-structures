@@ -27,17 +27,16 @@ public class ReverseQueue {
 
     public static Queue<Integer> reverseQueue(Queue<Integer> queue) {
         Stack stack = new Stack(5);
-        Queue<Integer> reversedQueue = new ArrayDeque<Integer>();
 
         while (!queue.isEmpty()) {
             stack.push(queue.remove());
         }
 
         while (!stack.isEmpty()) {
-            reversedQueue.add(stack.pop());
+            queue.add(stack.pop());
         }
 
-        return reversedQueue;
+        return queue;
     }
 
 }
