@@ -1,10 +1,13 @@
 package challenges;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Stack;
-import java.util.ArrayList;
 
 public class BalanceExpression {
+
+    private final static List<Character> openingBrackets = Arrays.asList('{', '[', '(', '<');
+    private final static List<Character> closingBrackets = Arrays.asList('}', ']', ')', '>');
 
     public static boolean isBalanceExpression(String expression) {
         Stack<Character> stack = new Stack<>();
@@ -19,8 +22,7 @@ public class BalanceExpression {
                         return false;
 
                     char openingBracket = stack.pop();
-
-                    if (((openingBracket) != indexOfBracket(bracket)))
+                    if (bracketsMatch(openingBracket, bracket))
                         return false;
                 }
             }
@@ -28,23 +30,15 @@ public class BalanceExpression {
         return stack.isEmpty();
     }
 
-    private static int indexOfBracket(char bracket) {
-        return switch (bracket) {
-            case '{', '}' -> 0;
-            case '[', ']' -> 1;
-            case '(', ')' -> 2;
-            case '<', '>' -> 3;
-            default -> -1;
-        };
+    private static boolean bracketsMatch(char left, char right) {
+        return (openingBrackets.indexOf(left ) == closingBrackets.indexOf(right);
     }
 
     private static boolean isOpeningBracket(char ch) {
-        var openingBrackets = Arrays.asList('{', '[', '(', '<');
         return openingBrackets.contains(ch);
     }
 
     private static boolean isClosingBracket(char ch) {
-        var closingBrackets = Arrays.asList('}', ']', ')', '>');
         return closingBrackets.contains(ch);
     }
 
