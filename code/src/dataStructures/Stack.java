@@ -27,7 +27,7 @@ public class Stack {
 
     public int peek() {
         if (isEmpty())
-            throw new IndexOutOfBoundsException();
+            throw new IllegalStateException(); 
 
         return array[count];
     }
