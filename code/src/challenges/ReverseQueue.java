@@ -7,10 +7,6 @@ import dataStructures.Stack;
 
 public class ReverseQueue {
 
-    // TODO add
-    // TODO remove
-    // TODO isEmpty
-
     public static void main(String[] args) {
         Queue<Integer> queue = new ArrayDeque<Integer>();
 
