@@ -3,11 +3,11 @@ package dataStructures;
 import java.util.Arrays;
 
 public class ArrayQueue {
-    
+
     private int front;
     private int rear = 0;
     private int count = 0;
-    private int[] array; 
+    private int[] array;
 
     public ArrayQueue(int size) {
         array = new int[size];
@@ -19,17 +19,11 @@ public class ArrayQueue {
         queue.enqueue(20);
         queue.enqueue(30);
 
-        queue.dequeue();
-        queue.dequeue();
-
-        queue.enqueue(40);
-        queue.enqueue(50);
-        queue.enqueue(60);
-        queue.enqueue(70);
+        System.out.println(queue.rear);
 
         System.out.println(queue);
     }
-    
+
     public boolean isEmpty() {
         return front == rear;
     }
@@ -45,7 +39,7 @@ public class ArrayQueue {
         count++;
         array[rear++ % array.length] = item;
     }
-        
+
     public int dequeue() {
         if (isEmpty())
             throw new IllegalStateException();
@@ -53,7 +47,7 @@ public class ArrayQueue {
         int item = array[front];
         front = front++ % array.length;
         count--;
-        return item; 
+        return item;
     }
 
     public int peek() {
