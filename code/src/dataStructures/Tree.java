@@ -5,8 +5,22 @@ public class Tree {
     Tree tree = new Tree();
     tree.insert(7);
     tree.insert(6);
-    tree.insert(8);
     tree.insert(4);
+    tree.insert(8);
+    tree.insert(1);
+    tree.insert(9);
+    tree.insert(10);
+
+    /*
+     * TREE VISUALIZATION
+     * ___________7
+     *
+     * _____4___________9
+     *
+     * __1_____6_____8_____10
+     *
+     *
+     */
     System.out.println(tree.find(4));
     System.out.println(tree.find(10));
   }
@@ -18,6 +32,11 @@ public class Tree {
 
     Node(int value) {
       this.value = value;
+    }
+
+    @Override
+    public String toString() {
+      return "Node=" + value;
     }
   }
 
@@ -32,47 +51,34 @@ public class Tree {
       return;
     }
 
-    Node parentNode = getNode(value, root);
-    if (parentNode.value > value)
-      parentNode.leftChild = node;
-    else
-      parentNode.rightChild = node;
+    while (true) {
+      if (current.value < value) {
+        if (current.rightChild == null) {
+          current.rightChild = node;
+          break;
+        }
+        current = current.rightChild;
+      } else {
+        if (current.leftChild == null) {
+          current.leftChild = node;
+          break;
+        }
+        current = current.leftChild;
+      }
+    }
   }
 
   public boolean find(int value) {
     Node current = root;
 
-    while (true) {
-      if (current.value == value)
-        return true;
-
-      if (current.value < value) {
-        if (current.rightChild == null)
-          break;
+    while (current != null) {
+      if (current.value < value)
         current = current.rightChild;
-      } else {
-        if (current.leftChild == null)
-          break;
+      else if (current.value > value)
         current = current.leftChild;
-      }
+      else
+        return true;
     }
-
     return false;
   }
-
-  private Node getNode(int value, Node current) {
-    while (true) {
-      if (current.value < value) {
-        if (current.rightChild == null)
-          break;
-        current = current.rightChild;
-      } else {
-        if (current.leftChild == null)
-          break;
-        current = current.leftChild;
-      }
-    }
-    return current;
-  }
-
 }
