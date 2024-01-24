@@ -3,22 +3,13 @@ package dataStructures;
 import java.util.LinkedList;
 
 public class HashTable {
-  // TODO get(K) V
-  // TODO remove(K)
-  // k: int
-  // v: string
-  // Collisions: chaining
-  // LinkedList<Entry>[]
-  // [ LL, LL, LL, LL ]
-
-  // ! FIX duplicate key problem
-
   public static void main(String[] args) {
     HashTable hashTable = new HashTable();
     hashTable.put(20, "Aaron");
     hashTable.put(21, "Joseph");
     hashTable.put(2, "Joseph");
     hashTable.put(20, "Dan");
+    hashTable.remove(21);
     for (int i = 0; i < hashTable.array.length; i++) {
       LinkedList entries = hashTable.array[i];
       if (entries != null) {
@@ -28,6 +19,7 @@ public class HashTable {
         }
       }
     }
+    System.out.println("Get key 20: " + hashTable.get(20));
   }
 
   public LinkedList[] array = new LinkedList[5];
@@ -46,7 +38,6 @@ public class HashTable {
     public String toString() {
       return key + "=" + value;
     }
-
   }
 
   public void put(int key, String value) {
@@ -54,7 +45,6 @@ public class HashTable {
 
     if (array[index] == null)
       createEntryAt(index);
-
 
     LinkedList entries = getEntries(index);
     if (!overrideEntryIfPresent(entries, key, value)) {
@@ -64,8 +54,14 @@ public class HashTable {
   }
 
   public String get(int key) {
+    int index = hash(key);
 
-
+    LinkedList<Entry> entries = getEntries(index);
+    for (Entry entry : entries) {
+      if (entry.key == key)
+        return entry.value;
+    }
+    return "";
   }
 
   private static boolean overrideEntryIfPresent(LinkedList<Entry> entries, int key, String value) {
@@ -79,9 +75,16 @@ public class HashTable {
     return false;
   }
 
+  public void remove(int key) {
+    int index = hash(key);
+
+    LinkedList<Entry> entries = getEntries(index);
+    entries.removeIf(entry -> entry.key == key);
+  }
+
   private LinkedList getEntries(int index) {
-        return array[index];
-    }
+    return array[index];
+  }
 
   private void createEntryAt(int index) {
     LinkedList<Entry> entries = new LinkedList<>();
