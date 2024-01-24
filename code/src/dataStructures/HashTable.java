@@ -1,5 +1,6 @@
 package dataStructures;
 
+import java.beans.ConstructorProperties;
 import java.util.LinkedList;
 
 public class HashTable {
@@ -10,24 +11,15 @@ public class HashTable {
     hashTable.put(2, "Joseph");
     hashTable.put(20, "Dan");
     hashTable.remove(21);
-    for (int i = 0; i < hashTable.array.length; i++) {
-      LinkedList entries = hashTable.array[i];
-      if (entries != null) {
-        var entriesArray = entries.toArray();
-        for (int j = 0; j < entriesArray.length; j++) {
-          System.out.println("Array Index: " + i + " Index: " + j + "  Entry: " + entriesArray[j]);
-        }
-      }
-    }
     System.out.println("Get key 20: " + hashTable.get(20));
   }
 
-  public LinkedList[] array = new LinkedList[5];
+  public LinkedList<Entry>[] entries = new LinkedList[5];
 
-  static class Entry {
+  private class Entry {
 
-    public int key;
-    public String value;
+    private int key;
+    private String value;
 
     Entry(int key, String value) {
       this.key = key;
@@ -41,58 +33,54 @@ public class HashTable {
   }
 
   public void put(int key, String value) {
-    int index = hash(key);
-
-    if (array[index] == null)
-      createEntryAt(index);
-
-    LinkedList entries = getEntries(index);
-    if (!overrideEntryIfPresent(entries, key, value)) {
-      Entry entry = new Entry(key, value);
-      entries.add(entry);
+    Entry entry = getEntry(key);
+    if (entry != null) {
+      entry.value = value;
     }
+
+    getOrCreateBucket(key).addLast(new Entry(key, value));
   }
 
   public String get(int key) {
-    int index = hash(key);
-
-    LinkedList<Entry> entries = getEntries(index);
-    for (Entry entry : entries) {
-      if (entry.key == key)
-        return entry.value;
-    }
-    return "";
-  }
-
-  private static boolean overrideEntryIfPresent(LinkedList<Entry> entries, int key, String value) {
-    for (var entry : entries) {
-      if (entry.key == key) {
-        entry.value = value;
-        return true;
-      }
-    }
-
-    return false;
+    Entry entry = getEntry(key);
+    return (entry == null) ? null : entry.value;
   }
 
   public void remove(int key) {
+    Entry entry = getEntry(key);
+    if (entry == null)
+      throw new IllegalStateException();
+
+    getBucket(key).remove(entry);
+  }
+
+  private Entry getEntry(int key) {
+    LinkedList<Entry> bucket = getBucket(key);
+    if (bucket != null)
+      for (Entry entry : bucket) {
+        if (entry.key == key)
+          return entry;
+      }
+    return null;
+  }
+
+  private LinkedList<Entry> getBucket(int key) {
+    return entries[hash(key)];
+  }
+
+  private LinkedList<Entry> getOrCreateBucket(int key) {
     int index = hash(key);
+    LinkedList<Entry> bucket = entries[index];
+    if (bucket == null) {
+      bucket = new LinkedList<>();
+      entries[index] = bucket;
+    }
 
-    LinkedList<Entry> entries = getEntries(index);
-    entries.removeIf(entry -> entry.key == key);
-  }
-
-  private LinkedList getEntries(int index) {
-    return array[index];
-  }
-
-  private void createEntryAt(int index) {
-    LinkedList<Entry> entries = new LinkedList<>();
-    array[index] = entries;
+    return bucket;
   }
 
   private int hash(int key) {
-    return (key % array.length);
+    return (key % entries.length);
   }
 
 }
