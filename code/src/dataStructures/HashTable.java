@@ -1,10 +1,8 @@
 package dataStructures;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 
 public class HashTable {
-  // TODO put(K, V)
   // TODO get(K) V
   // TODO remove(K)
   // k: int
@@ -20,9 +18,9 @@ public class HashTable {
     hashTable.put(20, "Aaron");
     hashTable.put(21, "Joseph");
     hashTable.put(2, "Joseph");
-    hashTable.put(20, "Aaron");
+    hashTable.put(20, "Dan");
     for (int i = 0; i < hashTable.array.length; i++) {
-      LinkedList<Entry> entries = hashTable.array[i];
+      LinkedList entries = hashTable.array[i];
       if (entries != null) {
         var entriesArray = entries.toArray();
         for (int j = 0; j < entriesArray.length; j++) {
@@ -32,9 +30,9 @@ public class HashTable {
     }
   }
 
-  public LinkedList<Entry>[] array = new LinkedList[5];
+  public LinkedList[] array = new LinkedList[5];
 
-  private class Entry {
+  static class Entry {
 
     public int key;
     public String value;
@@ -57,22 +55,32 @@ public class HashTable {
     if (array[index] == null)
       createEntryAt(index);
 
-    entries = getEntry(index);
-    Entry entry = new Entry(key, value);
-    entries.add(entry);
+
+    LinkedList entries = getEntries(index);
+    if (!overrideEntryIfPresent(entries, key, value)) {
+      Entry entry = new Entry(key, value);
+      entries.add(entry);
+    }
   }
 
-  private void isPresent(LinkedList entries, int key) {
+  public String get(int key) {
+
+
+  }
+
+  private static boolean overrideEntryIfPresent(LinkedList<Entry> entries, int key, String value) {
     for (var entry : entries) {
-      if (entry.key == key)
+      if (entry.key == key) {
+        entry.value = value;
         return true;
+      }
     }
 
     return false;
   }
 
-  private Entry getEntry(int index) {
-        return LinkedList<Entry> entries = array[index];
+  private LinkedList getEntries(int index) {
+        return array[index];
     }
 
   private void createEntryAt(int index) {
