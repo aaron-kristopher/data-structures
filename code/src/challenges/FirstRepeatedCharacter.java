@@ -6,8 +6,8 @@ import java.util.HashSet;
 public class FirstRepeatedCharacter {
 
     public static void main(String[] args) {
-        char letter = getfirstrepeatedcharacter("green apple");
-        system.out.println(letter);
+        char letter = getFirstRepeatedCharacter("green apple");
+        System.out.println(letter);
     }
 
     public static char getFirstRepeatedCharacter(String sentence) {
