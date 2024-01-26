@@ -4,12 +4,14 @@ public class Tree {
     public static void main(String[] args) {
         Tree tree = new Tree();
         tree.insert(7);
-        tree.insert(6);
         tree.insert(4);
+        tree.insert(9);
         tree.insert(8);
         tree.insert(1);
-        tree.insert(9);
+        tree.insert(6);
         tree.insert(10);
+        int minValue = tree.min();
+        System.out.println("Minimum value: " + minValue);
 
         /*
          * TREE VISUALIZATION
@@ -21,8 +23,6 @@ public class Tree {
          *
          *
          */
-        System.out.println(tree.find(4));
-        System.out.println(tree.find(10));
     }
 
     private class Node {
@@ -82,4 +82,76 @@ public class Tree {
         return false;
     }
 
+    public void traversePreOrder() {
+        traversePreOrder(this.root);
+    }
+
+    private void traversePreOrder(Node node) {
+        if (node == null)
+            return;
+
+        System.out.println(node);
+        traversePreOrder(node.leftChild);
+        traversePreOrder(node.rightChild);
+    }
+
+    public void traverseInOrder() {
+        traverseInOrder(this.root);
+    }
+
+    private void traverseInOrder(Node node) {
+        if (node == null)
+            return;
+
+        traverseInOrder(node.leftChild);
+        System.out.println(node);
+        traverseInOrder(node.rightChild);
+    }
+
+    public void traversePostOrder() {
+        traversePostOrder(this.root);
+    }
+
+    private void traversePostOrder(Node node) {
+        if (node == null)
+            return;
+
+        traversePostOrder(node.leftChild);
+        traversePostOrder(node.rightChild);
+        System.out.println(node);
+    }
+
+    public int height() {
+        return height(root);
+    }
+
+    private int height(Node root) {
+        if (root == null)
+            return -1;
+        if (isLeaf(root))
+            return 0;
+
+        return 1 + Math.max(height(root.leftChild), height(root.rightChild));
+    }
+
+    public int min() {
+        return min(root);
+    }
+
+    private int min(Node root) {
+        if (root == null)
+            return -1;
+
+        if (isLeaf(root))
+            return root.value;
+
+        int left = min(root.leftChild);
+        int right = min(root.rightChild);
+
+        return Math.min(Math.min(left, right), root.value);
+    }
+
+    private boolean isLeaf(Node node) {
+        return (root.leftChild == null && root.rightChild == null);
+    }
 }
