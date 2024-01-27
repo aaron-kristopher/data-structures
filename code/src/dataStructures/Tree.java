@@ -10,7 +10,7 @@ public class Tree {
         tree.insert(1);
         tree.insert(6);
         tree.insert(10);
-        int minValue = tree.min();
+        int minValue = tree.binaryTreeMin();
         System.out.println("Minimum value: " + minValue);
 
         /*
@@ -133,6 +133,18 @@ public class Tree {
             return 0;
 
         return 1 + Math.max(height(root.leftChild), height(root.rightChild));
+    }
+
+    public int binaryTreeMin() {
+        if (root == null)
+            throw new IllegalStateException();
+
+        Node current = root;
+
+        while (current.leftChild != null)
+            current = current.leftChild;
+
+        return current.value;
     }
 
     public int min() {
