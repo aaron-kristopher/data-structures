@@ -128,6 +128,7 @@ public class Tree {
     private int height(Node root) {
         if (root == null)
             return -1;
+
         if (isLeaf(root))
             return 0;
 
