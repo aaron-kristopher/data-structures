@@ -185,4 +185,48 @@ public class Tree {
 
         return false;
     }
+
+    public boolean isBinarySearchTree() {
+        return isBinarySearchTree(root, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+    }
+
+    public boolean isBinarySearchTree(Node root, Double minRange, Double maxRange) {
+        if (root == null)
+            return true;
+
+        return (isInRange(root.value, minRange, maxRange))
+                && isBinarySearchTree(root.leftChild, minRange, root.value)
+                && isBinarySearchTree(root.rightChild, root.value, maxRange);
+    }
+
+    public boolean isBinarySearchTree(Node root, int minRange, int maxRange) {
+        if (root == null)
+            return true;
+
+        return (isInRange(root.value, minRange, maxRange))
+                && isBinarySearchTree(root.leftChild, minRange, root.value)
+                && isBinarySearchTree(root.rightChild, root.value, maxRange);
+    }
+
+    private boolean isBinarySearchTree(Node root, int minRange, Double maxRange) {
+        if (root == null)
+            return true;
+
+        return (isInRange(root.value, minRange, maxRange))
+                && isBinarySearchTree(root.leftChild, minRange, root.value)
+                && isBinarySearchTree(root.rightChild, root.value, maxRange);
+    }
+
+    private boolean isBinarySearchTree(Node root, Double minRange, int maxRange) {
+        if (root == null)
+            return true;
+
+        return (isInRange(root.value, minRange, maxRange))
+                && isBinarySearchTree(root.leftChild, minRange, root.value)
+                && isBinarySearchTree(root.rightChild, root.value, maxRange);
+    }
+
+    private boolean isInRange(int value, double minRange, double maxRange) {
+        return value < minRange || value > maxRange;
+    }
 }
